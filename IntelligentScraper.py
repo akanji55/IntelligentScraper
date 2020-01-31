@@ -16,6 +16,7 @@ class IntelligentScraper:
     ## This function is ran on a separate thread and will be triggered once every minute
     def updateDatabase(self):
         print("THREADING IS WORKING")
+        # This will need a to call the functionality that is similar to the update command
         self.timer = threading.Timer(60.0, self.updateDatabase)
         self.timer.start()
 
