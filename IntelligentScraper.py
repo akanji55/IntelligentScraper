@@ -25,7 +25,7 @@ class IntelligentScraper:
             else:  # Scrape an Amazon page option
                 self.library.setAmazonItemPageURL(item)  # Set the URL
                 (name, buyout, bid, time) = self.library.scrapeAmazonItemPage()  # Scrape page for relevant data
-                self.database.update(item, "amazon", name, buyout, bid, time)  # Update entry
+                self.database.updateEntry(item, "amazon", name, buyout, bid, time)  # Update entry
         # Restart the timer functionality
         self.timer = threading.Timer(60.0, self.updateDatabase)
         self.timer.start()
