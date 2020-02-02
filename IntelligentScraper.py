@@ -15,7 +15,18 @@ class IntelligentScraper:
     ## Function to update the database with the most up to date prices
     ## This function is ran on a separate thread and will be triggered once every minute
     def updateDatabase(self):
-        # This will need a to call the functionality that is similar to the update command
+        # Now that the timer has been triggered, let us get all of the items to update
+        items = self.database.getItemsToUpdate()
+        for item in items:
+            if self.library.isEbayURL(item):  # Scrape an Ebay page option
+                self.library.setEbayItemPageURL(item)  # Set the URL
+                (name, buyout, bid, time) = self.library.scrapeEbayItemPage()  # Scrape page for relevant data
+                self.database.updateEntry(item, "amazon", name, buyout, bid, time)  # Update entry
+            else:  # Scrape an Amazon page option
+                self.library.setAmazonItemPageURL(item)  # Set the URL
+                (name, buyout, bid, time) = self.library.scrapeAmazonItemPage()  # Scrape page for relevant data
+                self.database.update(item, "amazon", name, buyout, bid, time)  # Update entry
+        # Restart the timer functionality
         self.timer = threading.Timer(60.0, self.updateDatabase)
         self.timer.start()
 
