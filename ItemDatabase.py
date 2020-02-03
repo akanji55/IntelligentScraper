@@ -41,6 +41,7 @@ class ItemDatabase:
 
         ## Compare the buyout price to see if there is a price change
         # If the old price is NA and new price is not, assume price change
+        currentItem = currentItem[0] # It is safe to assume that these URLs are only associated with one item
         if currentItem[2] == "NA" and buyoutPrice != "NA":
             print("ALERT: There has been a buyout price change for " + itemName + " on " + platform +
                   ". Old buyout price: NA. New buyout price: " + buyoutPrice)

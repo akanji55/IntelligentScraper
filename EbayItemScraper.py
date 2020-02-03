@@ -35,16 +35,12 @@ class EbayItemScraper(BaseScraper):
         else:
             if len(buyoutPrices) == 1:
                 buyoutPrice = buyoutPrices[0].get_text().strip()
-            else:
-                print("There is no buyout price for this item")
             if len(bidPrices) == 1:
                 bidPrice = bidPrices[0].get_text().strip()
                 try:
                     remainingTime = util.find("span", {"id": "vi-cdown_timeLeft"}).get_text().strip()
                 except: # Can't find the remaining auction time on the web page
                     print("Could not infer remaining time for this auction")
-            else:
-                print("There is no running auction for this item")
         return itemName, buyoutPrice, bidPrice, remainingTime
 
     ## Function to clean the item name of all miscelaneous characters from an item name

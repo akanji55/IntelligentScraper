@@ -10,25 +10,30 @@ class IntelligentScraper:
         self.name = "IntelligentScraper"
         self.library = ScraperLibrary()
         self.database = ItemDatabase()
-        self.timer = threading.Timer(60.0, self.updateDatabase)
+        self.timer = threading.Timer(60.0, self.onTimer)
+
+    ## Function that will be triggered on our timer thread
+    ## This function will restart the timer and call our update functionality
+    def onTimer(self):
+        # Update the database and restart the timer functionality
+        self.updateDatabase()
+        self.timer = threading.Timer(60.0, self.onTimer)
+        self.timer.start()
 
     ## Function to update the database with the most up to date prices
     ## This function is ran on a separate thread and will be triggered once every minute
     def updateDatabase(self):
-        # Now that the timer has been triggered, let us get all of the items to update
         items = self.database.getItemsToUpdate()
         for item in items:
             if self.library.isEbayURL(item):  # Scrape an Ebay page option
                 self.library.setEbayItemPageURL(item)  # Set the URL
                 (name, buyout, bid, time) = self.library.scrapeEbayItemPage()  # Scrape page for relevant data
-                self.database.updateEntry(item, "amazon", name, buyout, bid, time)  # Update entry
+                self.database.updateEntry(item, "ebay", name, buyout, bid, time)  # Update entry
             else:  # Scrape an Amazon page option
                 self.library.setAmazonItemPageURL(item)  # Set the URL
                 (name, buyout, bid, time) = self.library.scrapeAmazonItemPage()  # Scrape page for relevant data
                 self.database.updateEntry(item, "amazon", name, buyout, bid, time)  # Update entry
-        # Restart the timer functionality
-        self.timer = threading.Timer(60.0, self.updateDatabase)
-        self.timer.start()
+
 
     ## Function to accept user input, store information and display status to the user
     ## This function will loop forever until the user decides to exit the tool
@@ -82,7 +87,7 @@ class IntelligentScraper:
                 else:
                     print("Inputted URL for platform not currently supported")
             elif userInput == "update":
-                print("Placeholder for update functionality")
+                self.updateDatabase()
             elif userInput == "display":
                 self.database.display()
             else:
