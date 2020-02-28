@@ -11,7 +11,7 @@
 - threading
 - datetime
 
-## Required Libraries
+## Installing Required Libraries
 Installing the required libraries can be done using the *pip install* command. For example, to install the XlsxWriter library, you would run the following command *pip install XlsxWriter*.
 
 ## Running the system
