@@ -18,12 +18,21 @@ class AmazonItemScraper(BaseScraper):
     def scrapeAmazonLink(self):
         itemName = "NA"  # Default name to NA when can't infer name
         price = "NA"  # Default price to NA when can't infer buyout price
+
+        # NOTE: Due to Amazon trying to prevent bots from scraping their web pages,
+        # specific headers will need to be used in order to request properly. These headers
+        # may need to change at times to support emulating an actual browser GET request.
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
                           'AppleWebKit/537.36 (KHTML, like Gecko) '
                           'Chrome/58.0.3029.110 Safari/537.3'}
 
-        getInfo = requests.get(self.URL, headers=headers)
+        newHeaders = {'User-Agent':
+                          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) '
+                          'AppleWebKit/537.36 (KHTML, like Gecko) '
+                          'Chrome/54.0.2840.71 Safari/537.36'}
+
+        getInfo = requests.get(self.URL, headers=newHeaders)
         util = BeautifulSoup(getInfo.content, features="lxml")
         try:
             itemName = util.find("span", {"id": "productTitle"}).get_text().strip()
