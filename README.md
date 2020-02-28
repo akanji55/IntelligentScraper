@@ -23,7 +23,7 @@ Simply run the command *python IntelligentScraper.py* to start the system. The s
 - *export* – Dump the internal database tracking all of the user queried items to a spreadsheet and exit the tool
 - *exit* – Exit the tool and return control to the user
 
-Upon entering a supported command, the system will prompt the user for specific information depending on the information passed in.
+Upon entering a supported command, the system will prompt the user for specific information depending on the command passed in. For example, if the *store_item* command is sent to the system, the system will prompt the user to enter a URL for one of the supported platforms.
 
 ## Supported Platforms
 - Amazon
