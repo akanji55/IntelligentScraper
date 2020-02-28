@@ -4,7 +4,7 @@
 - Python 3.6
 - XlsxWriter
 - beautifulsoup4
-- lvml
+- lxml
 - requests
 - urllib3
 - re
