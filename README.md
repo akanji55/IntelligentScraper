@@ -1,7 +1,7 @@
 # IntelligentScraper
 
 ## Repository Location
-All of the code for the Intelligent Scraper system exists on gitbut. This repository can be found at the following URL: https://github.com/akanji55/IntelligentScraper
+All of the code for the Intelligent Scraper system exists on github. This repository can be found at the following URL: https://github.com/akanji55/IntelligentScraper
 
 ## Cloning Reporitory
 In order to run the Intelligent Scraper system, the above repository will need to be cloned to your local machine. This can be done by utilizing the *Clone or download* feature found on github. Some IDEs have functionality built in that allow the user to clone a repository from with the environment. You will also need the following required libraries:
