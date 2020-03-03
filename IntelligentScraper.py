@@ -80,10 +80,10 @@ class IntelligentScraper:
                 url = input("Please enter an Ebay/Amazon search results URL: ")
                 if self.library.isEbayURL(url):  # Scrape an Ebay page option
                     self.library.setEbaySearchResultsPageURL(url)  # Set the URL
-                    ## Placeholder to scrape Ebay Search Results page and store in database
+                    print("Inputted command currently not supported (under development)")
                 elif self.library.isAmazonURL(url):  # Scrape an Amazon page option
                     self.library.setAmazonSearchResultsPageURL(url)  # Set the URL
-                    ## Placeholder to scrape Amazon Search Results page and store in database
+                    print("Inputted command currently not supported (under development)")
                 else:
                     print("Inputted URL for platform not currently supported")
             elif userInput == "update":
